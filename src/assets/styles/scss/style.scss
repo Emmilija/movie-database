@@ -1,0 +1,41 @@
+.container {
+    margin-top: 8rem;
+
+}
+.box {
+    margin: 4rem;
+  }
+.movies-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center; 
+    padding-bottom: 2rem;
+   
+
+    .card {
+        width: calc(33.33% - 20px); 
+        height: 300px; 
+        box-sizing: border-box; 
+    }
+
+    .movie-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    margin-bottom: 2rem;
+    }
+
+    .movie-year {
+        margin: 0; 
+        color: #888;
+    }
+}
+
+.movie-details {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-around;
+}
