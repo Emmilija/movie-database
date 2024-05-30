@@ -15,7 +15,7 @@ const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
-  const { movies, totalResults} = useSelector((state) => state.movies);
+  const { movies, status, error, totalResults} = useSelector((state) => state.movies);
   const favorites = useSelector((state) => state.favorites);
 
 
@@ -23,7 +23,8 @@ const [loading, setLoading] = useState(false);
     dispatch(fetchMovies({ page, query: '' }));
   }, [dispatch, page]); 
 
-
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>Error: {error}</div>;
   const handleSearch = async (e) => {
     e.preventDefault();
     const searchQuery = e.target.elements.search.value;

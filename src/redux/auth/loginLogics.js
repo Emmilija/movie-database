@@ -6,6 +6,7 @@ const LoginLogics = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(true);
+    // eslint-disable-next-line
     const [loginStatus, setLoginStatus] = useState(null);
     const dispatch = useDispatch();
 const navigate = useNavigate();

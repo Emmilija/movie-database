@@ -1,30 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const apiKey = 'ee8c988b'
+import AxiosInstance from '../lib/axiosInstance';
 
 
 export const fetchMovies = createAsyncThunk(
-    'movies/fetchMovies',
-
-    async ({ query, page }) => {
-      const url = `http://www.omdbapi.com/?s=${query}&page=${page}&apikey=${apiKey}`;
-      try {
-        const response = await axios.get(url);
-        const data = response.data;
-        console.log(data)
-        if (data.Response === 'True') {
-          return { movies: data.Search, totalResults: data.totalResults };
-       
-        } else {
-          return { movies: [], totalResults: 0 };
+  'movies/fetchMovies',
+  async ({ query, page }) => {
+    try {
+      const response = await AxiosInstance( {
+        url: '/',
+        method: 'GET',
+        params: {
+          s: query,
+          page: page
         }
-      } catch (error) {
-        console.error('Error fetching the movie data:', error);
+      });
+      const data = response.data;
+      console.log(data);
+      if (data.Response === 'True') {
+        return { movies: data.Search, totalResults: data.totalResults };
+      } else {
         return { movies: [], totalResults: 0 };
       }
+    } catch (error) {
+      console.error('Error fetching the movie data:', error);
+      return { movies: [], totalResults: 0 };
     }
-  );
+  }
+);
+
 
 const moviesSlice = createSlice({
     name: 'movies',
