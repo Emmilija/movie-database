@@ -2,9 +2,12 @@ import '../assets/styles/scss/navbar.scss'
 import { Menu } from 'antd'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 function Navbar () {
     const [current, setCurrent] = useState('home');
-
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         setCurrent(e.key);

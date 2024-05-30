@@ -3,6 +3,7 @@ import { saveUser, removeUser, getUser } from "../../hooks/useStorage";
 
 const initialState = {
     user: getUser(),
+    isLoggedIn: !!getUser(),
   status: 'idle',
   error: null
 }

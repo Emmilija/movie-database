@@ -9,6 +9,8 @@ function Favorites() {
     const favorites = useSelector((state) => state.favorites);
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const navigate = useNavigate();
+    console.log("Is Logged In:", isLoggedIn);  // Debug log
+    console.log("Favorites:", favorites);  // Debug log
 
     const handleCardClick = (movie) => {
         navigate(`/movies/${movie.imdbID}`, { state: { movie } });
@@ -19,7 +21,7 @@ function Favorites() {
     return (
         <div className="container">
             <div className="box">
-                {isLoggedIn ? (
+              
                     <>
                         <h1>Favorites</h1>
                         <div className='movies-list'>
@@ -34,9 +36,8 @@ function Favorites() {
                             ))}
                         </div>
                     </>
-                ) : (
-              <h1>First login to see your favorites movies</h1>
-                )}
+             
+              
             </div>
         </div>
     );

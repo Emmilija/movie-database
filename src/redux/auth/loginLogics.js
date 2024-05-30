@@ -15,9 +15,9 @@ const navigate = useNavigate();
     const handleLogin = async(e) => {
 e.preventDefault();
 try {
-    // Simulate API call with setTimeout, replace with actual API call
+
     setTimeout(() => {
-        // For demo, assuming success when email is 'demo' and password is 'password'
+    
         if (email === "demo@gmail.com" && password === "password") {
             dispatch(loginSuccess({ email }));
             setLoginStatus("success");

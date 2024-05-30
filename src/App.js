@@ -1,12 +1,11 @@
+import './assets/styles/scss/style.scss';
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './assets/styles/scss/style.scss';
 import Favorites from './pages/Favorites';
 import Searched from './pages/Searched';
 import Layout from './layout/MainLayout';
 import Home from './pages/Home/Home';
 import MovieDetailsLayout from './pages/Home/MovieDetailLayout';
-
 import Login from './pages/Login';
 function App() {
   return (
