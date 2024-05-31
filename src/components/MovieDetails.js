@@ -4,6 +4,7 @@ import {useParams, useLocation, useNavigate} from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import '../assets/styles/scss/style.scss'
 import { IoMdArrowRoundBack } from "react-icons/io";
+
 const apiKey = 'ee8c988b';
 
 function MovieDetails(
@@ -34,24 +35,27 @@ function MovieDetails(
         return <div>Movie not found</div>;
     }
     const handleBackClick = () => {
-        navigate(-1); // This navigates back to the previous page
+        navigate(-1);
     };
     return (
-        <div className='movie-details'>
-                     <IoMdArrowRoundBack   onClick={handleBackClick}/>
-                     <div>
-                        <img alt='movie' src={movie.Poster}></img>
-                     </div>
-                     <div>
-                     <h2>{movie.Title}</h2>
+      <div className="movie-details">
+        <div className="icon-back">
+          <IoMdArrowRoundBack size={24} onClick={handleBackClick} />
+        </div>
+        <div className="details-container">
+          <div>
+            <img alt="movie" src={movie.Poster}></img>
+          </div>
+          <div className='details'>
+            <h2>{movie.Title}</h2>
             <p>Plot: {movie.Plot}</p>
             <p>Genre: {movie.Genre}</p>
             <p>Release Date: {movie.Released}</p>
-    <p>Rating: {movie.Rated}</p>
-    <p>{movie.Runtime}</p>
-                     </div>
-         
+            <p>Rating: {movie.Rated}</p>
+            <p>Duration: {movie.Runtime}</p>
+          </div>
         </div>
+      </div>
     );
 }
 

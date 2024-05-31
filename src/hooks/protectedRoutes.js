@@ -22,7 +22,7 @@ export const RequireAuth = () => {
 
   export const RequireNoAuth = () => {
     const token = getUser()?.token;
-    if (token) return <Navigate to='/' replace />;
+    if (token) return <Navigate to='/favorites' replace />;
     return <Outlet />;
   };
 

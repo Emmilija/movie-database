@@ -1,22 +1,28 @@
 import '../assets/styles/scss/style.scss'
-import { useSelector } from 'react-redux';
-import { Card } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { Card, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import {  removeFavorite } from '../redux/favoritesSlice';
 
-
-
+import { FaHeart } from "react-icons/fa";
 function Favorites() {
     const favorites = useSelector((state) => state.favorites);
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log("Is Logged In:", isLoggedIn);  // Debug log
-    console.log("Favorites:", favorites);  // Debug log
+    console.log("Is Logged In:", isLoggedIn); 
+    console.log("Favorites:", favorites);  
 
     const handleCardClick = (movie) => {
         navigate(`/movies/${movie.imdbID}`, { state: { movie } });
     };
-
-
+    const toggleFavorite = (movie) => {
+       
+        if (favorites.find(fav => fav.imdbID === movie.imdbID)) {
+            dispatch(removeFavorite(movie.imdbID));
+            message.error(`${movie.Title} removed from favorites`)
+        }
+    }
 
     return (
         <div className="container">
@@ -26,12 +32,13 @@ function Favorites() {
                         <h1>Favorites</h1>
                         <div className='movies-list'>
                             {favorites.map((movie) => (
-                                <Card key={movie.imdbID} style={{ width: 300, height: 550 }} onClick={() => handleCardClick(movie)}>
+                                <Card key={movie.imdbID} style={{ width: 300, height: 550 }} >
                                     <div className='movie-title'>
+                                    <FaHeart onClick={() => toggleFavorite(movie)} style={{ color: 'red' }} />
                                         <h3>{movie.Title}</h3>
                                     </div>
                                     <p className='movie-year'>({movie.Year})</p>
-                                    <img src={movie.Poster} alt={movie.Title} style={{ width: 240 }} />
+                                    <img src={movie.Poster} alt={movie.Title} style={{ width: 240 }} onClick={() => handleCardClick(movie)} />
                                 </Card>
                             ))}
                         </div>
