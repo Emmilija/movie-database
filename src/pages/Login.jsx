@@ -8,12 +8,12 @@ function Login() {
 
     return (
         <div className='container'>
-
-        <form onSubmit={handleLogin}>
+<div className='box-form'>
+<form onSubmit={handleLogin}>
           <div >
-          <h2 >Login to your account with your email and password to see yourfavorites movies</h2>
+          <h2> Login to your account with your email and password to see your favorites movies</h2>
           </div>
-          <div >
+          <div className='input-group email' >
               <label >Email</label>
            
               <input 
@@ -26,7 +26,7 @@ function Login() {
                 required
               />
             </div>
-            <div >
+            <div className='input-group pass'>
               <label htmlFor="password">Password</label>
           
               <input
@@ -41,17 +41,21 @@ function Login() {
          
             </div>
 
-
-            <button  type="submit">
+<div className='button-group'>
+<button  type="submit">
               Login
             </button>
             
+</div>
+       
          
-             Sign up
+       
          
            
             </form>
             </div>
+</div>
+       
     )
 }
 
